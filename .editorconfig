@@ -1,0 +1,303 @@
+# EditorConfig is awesome: http://EditorConfig.org
+# VS implementat: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
+
+# top-most EditorConfig file
+root = true
+
+# Don't use tabs for indentation.
+[*]
+end_of_line  = crlf
+indent_style = space
+# (Please don't specify an indent_size here; that has too many unintended consequences.)
+
+# Code files
+[*.{cs,csx,vb,vbx}]
+indent_size = 4
+
+# Xml project files
+[*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
+indent_size = 3
+
+# Xml config files
+[*.{props,targets,ruleset,config,nuspec,resx,vsixmanifest,vsct}]
+indent_size = 3
+
+# JSON files
+[*.json]
+indent_size = 3
+
+############## General .NET ##############
+[*.{cs,vb}]
+
+### Styling
+
+# This qualifiers (IDE0003 | IDE0009)
+dotnet_style_qualification_for_field                       = false : warning
+dotnet_style_qualification_for_property                    = false : warning
+dotnet_style_qualification_for_method                      = false : warning
+dotnet_style_qualification_for_event                       = false : warning
+
+# Language keyword settings for declarations (IDE0012 | IDE0014)
+dotnet_style_predefined_type_for_locals_parameters_members = true : warning
+
+# Language keyword settings for members (IDE0013 | IDE0015)
+dotnet_style_predefined_type_for_member_access             = false : warning
+
+# Object initializers (IDE0017)
+dotnet_style_object_initializer                            = true : suggestion
+
+# Collection initializers (IDE0028)
+dotnet_style_collection_initializer                        = true : suggestion
+
+# Null coalesce operator (IDE0029)
+dotnet_style_coalesce_expression                           = true : suggestion
+
+# Null conditional operator (IDE0031)
+dotnet_style_null_propagation                              = true : suggestion
+
+# Prefer auto properties (IDE0032)
+dotnet_style_prefer_auto_properties                        = true : suggestion
+
+# Explicit tuple names (IDE0033)
+dotnet_style_explicit_tuple_names                          = true : suggestion
+
+# Do not prefer inferred tuple names (IDE0037)
+# Do not prefer anonymous type member names
+dotnet_style_prefer_inferred_tuple_names                   = false: warning
+dotnet_style_prefer_inferred_anonymous_type_member_names   = false: warning
+
+# Require accessibility modifier (IDE0040)
+dotnet_style_require_accessibility_modifiers               = for_non_interface_members: suggestion
+
+# Prefer null check over ReferenceEquals (IDE0041)
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true: suggestion
+
+# Prefer fields to be marked readonly if they qualify (IDE044)
+dotnet_style_readonly_field                                = true: suggestion
+
+# Prefer conditional over if-else (IDE0045)
+dotnet_style_prefer_conditional_expression_over_assignment = true: suggestion
+
+# Prefer conditional over return (IDE0046)
+dotnet_style_prefer_conditional_expression_over_return     = true: suggestion
+
+# Prefer compound assignment over simple (IDE0054)
+dotnet_style_prefer_compound_assignment                    = true: suggestion
+
+# Flag methods with unused parameters if non-public (IDE0060)
+dotnet_code_quality_unused_parameters                      = non_public: warning
+
+### Formatting - does not use the suggestion, warning, etc format...
+dotnet_sort_system_directives_first                        = true
+dotnet_separate_import_directive_groups                    = true
+
+################ C# ###############
+[*.cs]
+
+### Styling
+
+# var vs explicit types (IDE0007 | IDE0008)
+csharp_style_var_for_built_in_types                                       = true : suggestion
+csharp_style_var_when_type_is_apparent                                    = true : suggestion
+csharp_style_var_elsewhere                                                = true : suggestion
+
+# Braces (IDE0011)
+csharp_prefer_braces                                                      = false : none
+
+# Throw expressions (IDE0016)
+csharp_style_throw_expression                                             = true : suggestion
+
+# Inline variables (IDE0018)
+csharp_style_inlined_variable_declaration                                 = true : suggestion
+
+# Pattern matching vs "as" (IDE0019)
+csharp_style_pattern_matching_over_as_with_null_check                     = false : suggestion
+
+# Pattern matching vs "is" (IDE0020)
+csharp_style_pattern_matching_over_is_with_cast_check                     = true : suggestion
+
+# Expression bodied constructors (IDE0021)
+csharp_style_expression_bodied_constructors                               = true : suggestion
+
+# Expression bodied methods (IDE0022)
+csharp_style_expression_bodied_methods                                    = true : suggestion
+
+# Expression bodied operators (IDE0023 | IDE0024)
+csharp_style_expression_bodied_operators                                  = true : suggestion
+
+# Expression bodied properties (IDE0025)
+csharp_style_expression_bodied_properties                                 = true : suggestion
+
+# Expression bodied indexers (IDE0026)
+csharp_style_expression_bodied_indexers                                   = true : suggestion
+
+# Expression bodied accessors (IDE0027)
+csharp_style_expression_bodied_accessors                                  = true : suggestion
+
+# Simplify default expressions (IDE0034)
+csharp_prefer_simple_default_expression                                   = true : suggestion
+
+# Prefer local function over anonymous (IDE0039)
+csharp_style_pattern_local_over_anonymous_function                        = false : suggestion
+
+# Conditional delegate calls (IDE0041)
+csharp_style_conditional_delegate_call                                    = true : suggestion
+
+# Do not prefer deconstructed variable declaration (IDE0042)
+csharp_style_deconstructed_variable_declaration                           = false : suggestion
+
+# Use expression bodied lambdas (IDE0053)
+csharp_style_expression_bodied_lambdas                                    = true : suggestion
+
+# Do not prefer index operator (IDE0056)
+csharp_style_prefer_index_operator                                        = false : suggestion
+
+# Do not prefer range operator (IDE0057)
+csharp_style_prefer_range_operator                                        = false : suggestion
+
+# No preferences for unused return values (IDE0058)
+#csharp_style_unused_value_expression_statement_preference                 = (discard_variable|unused_local_variable) : silent
+
+# No preferences for unused assignment values (IDE0059)
+#csharp_style_unused_value_assignment_preference                 = (discard_variable|unused_local_variable) : silent
+
+# Use expression bodied local functions when on single line (IDE0061)
+csharp_style_expression_bodied_local_functions                            = when_on_single_line : suggestion
+
+# Prefer local functions to be static (IDE0062)
+csharp_prefer_static_local_function                                       = true: suggestion
+
+# Do not use simple using statement (IDE0063)
+csharp_prefer_simple_using_statement                                      = false: warning
+
+# Put using directives at top of file (IDE0065)
+csharp_using_directive_placement                                          = outside_namespace : warning
+
+# Do not prefer switch expression (IDE0066)
+csharp_style_prefer_switch_expression                                     = false: suggestion
+
+#### Formatting - does not use the suggestion, warning, etc format...
+
+# New lines
+csharp_new_line_before_open_brace                                         = control_blocks, events, local_functions, methods, properties, types
+csharp_new_line_before_else                                               = false
+csharp_new_line_before_catch                                              = false
+csharp_new_line_before_finally                                            = false
+csharp_new_line_before_members_in_object_initializers                     = false
+csharp_new_line_before_members_in_anonymous_types                         = false
+csharp_new_line_between_query_expression_clauses                          = false
+
+# Indenting
+csharp_indent_case_contents                                               = false
+csharp_indent_switch_labels                                               = true
+csharp_indent_labels                                                      = flush_left
+csharp_indent_block_contents                                              = true
+csharp_indent_braces                                                      = false
+csharp_indent_case_contents_when_block                                    = false
+
+# Spacing
+csharp_space_after_cast                                                   = false
+csharp_space_after_keywords_in_control_flow_statements                    = true
+csharp_space_between_parentheses                                          = false
+
+csharp_space_before_colon_in_inheritance_clause                           = true
+csharp_space_after_colon_in_inheritance_clause                            = true
+
+csharp_space_around_binary_operators                                      = ignore
+
+csharp_space_between_method_declaration_parameter_list_parentheses        = true
+csharp_space_between_method_declaration_empty_parameter_list_parentheses  = false
+csharp_space_between_method_declaration_name_and_open_parenthesis         = true
+
+csharp_space_between_method_call_parameter_list_parentheses               = false
+csharp_space_between_method_call_empty_parameter_list_parentheses         = false
+csharp_space_between_method_call_name_and_opening_parenthesis             = false
+
+csharp_space_after_comma                                                  = true
+csharp_space_before_comma                                                 = false
+csharp_space_after_dot                                                    = false
+csharp_space_before_dot                                                   = false
+
+csharp_space_after_semicolon_in_for_statement                             = true
+csharp_space_before_semicolon_in_for_statement                            = false
+
+# Remove extra spaces (ignore | false)
+csharp_space_around_declaration_statements                                = false
+
+csharp_space_before_open_square_brackets                                  = false
+csharp_space_between_emptyn_square_brackets                               = false
+csharp_space_between_square_brackets                                      = false
+
+# Wrapping
+csharp_preserve_single_line_statements                                    = true
+csharp_preserve_single_line_blocks                                        = true
+
+###
+# Naming (most specific to least ordering required)
+# dotnet_naming_rule.{title}.symbols = dotnet_naming_symbols
+# dotnet_naming_rule.{title}.style = dotnet_naming_style
+# dotnet_naming_rule.{title}.rule.severity = none | suggestion | warning | error
+##
+# dotnet_naming_symbols.{title}.applicable_kinds = * | class, struct, interface, enum, property, method, field, event, namespace, delegate, type_parameter
+# dotnet_naming_symbols.{title}.applicable_accessibilities = * | public, internal, private, protected, protected_internal
+# dotnet_naming_symbols.{title}.required_modifiers = abstract, async, const, readonly, static, must_inherit?
+##
+# dotnet_naming_style.{title}.capitalization = pascal_case | camel_case | first_word_upper | all_upper | all_lower
+# dotnet_naming_style.{title}.required_prefix = ...
+# dotnet_naming_style.{title}.required_suffix = ...
+# dotnet_naming_style.{title}.word_separator = ...
+###
+
+# Private or internal static fields start with s_
+dotnet_naming_rule.private_static_fields_start_with_s_underscore.symbols  = private_static_field
+dotnet_naming_rule.private_static_fields_start_with_s_underscore.style    = start_with_s_underscore
+dotnet_naming_rule.private_static_fields_start_with_s_underscore.severity = warning
+
+# Private or internal fields start with _
+dotnet_naming_rule.private_fields_start_with_s_underscore.symbols         = private_field
+dotnet_naming_rule.private_fields_start_with_s_underscore.style           = start_with_underscore
+dotnet_naming_rule.private_fields_start_with_s_underscore.severity        = warning
+
+# Async methods end with Async
+dotnet_naming_rule.async_methods_end_with_async.symbols                   = async_methods
+dotnet_naming_rule.async_methods_end_with_async.style                     = end_with_async
+dotnet_naming_rule.async_methods_end_with_async.severity                  = warning
+
+# Interfaces begin with I
+dotnet_naming_rule.interfaces_start_with_i.symbols                        = interface
+dotnet_naming_rule.interfaces_start_with_i.style                          = start_with_i
+dotnet_naming_rule.interfaces_start_with_i.severity                       = error
+
+##
+# Symbols
+##
+dotnet_naming_symbols.async_methods.applicable_kinds                      = method
+dotnet_naming_symbols.async_methods.applicable_accessibilities            = *
+dotnet_naming_symbols.async_methods.required_modifiers                    = async
+
+dotnet_naming_symbols.interface.applicable_kinds                          = interface
+
+dotnet_naming_symbols.private_static_field.applicable_kinds               = field
+dotnet_naming_symbols.private_static_field.applicable_accessibilities     = private
+dotnet_naming_symbols.private_static_field.required_modifiers             = static
+
+dotnet_naming_symbols.private_field.applicable_kinds                      = field
+dotnet_naming_symbols.private_field.applicable_accessibilities            = private
+
+##
+# Styles
+##
+dotnet_naming_style.end_with_async.capitalization                         = pascal_case
+dotnet_naming_style.end_with_async.required_suffix                        = Async
+
+dotnet_naming_style.start_with_i.capitalization                           = pascal_case
+dotnet_naming_style.start_with_i.required_prefix                          = I
+
+dotnet_naming_style.start_with_s_underscore.capitalization                = camel_case
+dotnet_naming_style.start_with_s_underscore.required_prefix               = s_
+
+dotnet_naming_style.start_with_underscore.capitalization                  = camel_case
+dotnet_naming_style.start_with_underscore.required_prefix                 = _
+
+# CA1305: Specify IFormatProvider
+dotnet_diagnostic.CA1305.severity = none
