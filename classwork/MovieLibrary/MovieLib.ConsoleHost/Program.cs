@@ -6,6 +6,7 @@ namespace MovieLib.ConsoleHost
     {
         static void Main(string[] args)
         {
+            xyz;
             Console.WriteLine("Hello World!");
         }
     }
