@@ -24,8 +24,11 @@ namespace Demo
             char letterGrade = 'A';
             string name = "Bob";
 
+            //Please don't do this
             int hoursWorked;
+            hoursWorked = 0;
 
+            //Definitely assigned
             //hoursWorked = 10;
             intValue = hoursWorked;
         }
