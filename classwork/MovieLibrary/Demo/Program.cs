@@ -4,11 +4,49 @@ namespace Demo
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main ( string[] args )
         {
+            //DemoPrimitives();
+
+            //Arithmetic operators
+            int x = 10, y = 20, z;
+
+            z = x + y;
+            z = x - y;
+            z = x * y;
+            z = x / y;
+            z = x % y;
+
+            //x++ prefix increment
+            // temp = x;
+            // x += 1;
+            // temp;
+            x = 10;
+            x++;
+
+            //++x postfix incremnt
+            // x += 1;
+            // x;
+            ++x;
+
+            //x-- prefix decrement
+            // temp = x;
+            // x -= 1;
+            // temp;
+            x = 10;
+            x--;
+
+            //--x postfix decremnt
+            // x -= 1;
+            // x;
+            --x;
+        }
+
+        static void DemoPrimitives ()
+        { 
             //Primitives
             //Integrals
-            sbyte sbyteValue = 10;
+        sbyte sbyteValue = 10;
             short shortValue = 20;
             int intValue = 62_543;
             long longValue = 40L;

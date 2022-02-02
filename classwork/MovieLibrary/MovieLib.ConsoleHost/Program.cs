@@ -28,22 +28,51 @@ namespace MovieLib.ConsoleHost
             int releaseYear = ReadInt32("Enter the release year: ", 1900);
             string rating = ReadString("Enter a rating (e.g. PG, PG-13): ", true);
             string genre = ReadString("Enter a genre (optional): ", false);
-            bool isColor;
+            bool isColor = ReadBoolean("In color (Y/N)?");
             string description = ReadString("Enter a description (optional): ", false);
+        }
+
+        static bool ReadBoolean ( string message )
+        {            
+            Console.Write(message);
+
+            do
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+
+                if (key.Key == ConsoleKey.Y)
+                {
+                    Console.WriteLine('Y');
+                    return true;
+                } else if (key.Key == ConsoleKey.N)
+                {
+                    Console.WriteLine('N');
+                    return false;
+                };
+            } while (true);
         }
 
         private static int ReadInt32 ( string message, int minimumValue )
         {
             Console.Write(message);
 
-            string input = Console.ReadLine();
+            while (true)
+            {
+                string input = Console.ReadLine();
 
-            //TODO: Validate
-            int result = Int32.Parse(input);
-            if (result >= minimumValue)
-                return result;
+                //TODO: Validate
+                //int result = Int32.Parse(input);
+                //int result;
+                //if (Int32.TryParse(input, out result))
 
-            return -1;
+                //Inline variable declaration - declare and pass a variable to an output parameter
+                //   Identical to above code
+                if (Int32.TryParse(input, out int result))
+                    if (result >= minimumValue)
+                        return result;
+
+                Console.WriteLine("Value must be >= " + minimumValue);
+            };
         }
 
         //Function naming rules
