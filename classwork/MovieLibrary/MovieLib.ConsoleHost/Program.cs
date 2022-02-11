@@ -1,5 +1,5 @@
 ﻿/*
- * Your Name
+ * Classwork
  * ITSE 1430
  * Lab 1
  */
@@ -14,9 +14,12 @@ namespace MovieLib.ConsoleHost
         {
             //Block style declaration - all variables declared at top of function
             //On demand/inline declaration - variables are declared as needed
+            var done = false;
             do
             {
                 char input = DisplayMenu();
+
+                #region Comments
 
                 //Handle input
                 //if (input == 'A')
@@ -26,6 +29,18 @@ namespace MovieLib.ConsoleHost
                 //else if (input == 'Q')
                 //    if (ConfirmQuit())
                 //        break;  //Exits the loop
+
+                //Switch statement replaces a series of if-else-if where a single expression
+                // is compared to constant values
+                // - Expression can be any expression type
+                // - Case labels must be:
+                //     - Compile time constants
+                //     - Unique within the statement
+                // - Fallthrough is not allowed in C# unless the previous case statement is empty
+                // - Block statement should be used for multiple statements but
+                //   because of compilation issues is not required in many cases
+                //   Most developers use block statement when there is more than 1 statement excluding break
+                #endregion
                 switch (input)
                 {
                     case 'a':   //Fallthrough allowed when case statement is empty
@@ -34,58 +49,55 @@ namespace MovieLib.ConsoleHost
                     case 'v':
                     case 'V': ViewMovie(); break;
 
+                    case 'd':
+                    case 'D': DeleteMovie(); break;
+
                     case 'q':
                     case 'Q':
                     {
                         if (ConfirmQuit())
-                            break;
+                            done = true;
 
                         break;
                     };
                     default: Console.WriteLine("Unknown option"); break;
                 };
+            } while (!done);
+        }
+
+        static char DisplayMenu ()
+        {
+            Console.WriteLine("Movie Library");
+            //Console.WriteLine("--------------");
+            Console.WriteLine("".PadLeft(20, '-'));
+            Console.WriteLine("A)dd Movie");
+            Console.WriteLine("V)iew Movie");
+            Console.WriteLine("E)dit Movie");
+            Console.WriteLine("D)elete Movie");
+            Console.WriteLine("Q)uit");
+
+            do
+            {
+                string input = Console.ReadLine();
+
+                //Validate input, case insensitive
+                if (String.Compare(input, "A", true) == 0)
+                    return 'A';
+                else if (String.Compare(input, "V", true) == 0)
+                    return 'V';
+                else if (String.Equals(input, "E", StringComparison.CurrentCultureIgnoreCase))
+                    return 'E';
+                else if (String.Compare(input, "D", true) == 0)
+                    return 'D';
+                else if (String.Compare(input, "Q", true) == 0)
+                    return 'Q';
+                else
+                    Console.WriteLine("Invalid input");
             } while (true);
         }
 
-        private static void ViewMovie ()
-        {
-            //TODO: Does movie exist
-            Console.WriteLine(title);
-
-            //releaseYear (duration mins) rating
-            //Formatting 1 - string concatenation
-            //Console.WriteLine(releaseYear + " (" + duration + " mins) " + rating);
-
-            //Formatting 2 - string formatting
-            //Console.WriteLine("{0} ({1} mins) {2}", releaseYear, duration, rating);
-            //string temp = String.Format("{0} ({1} mins) {2}", releaseYear, duration, rating);
-            //Console.WriteLine(temp);
-
-            //Formatting 3 - string interpolation
-            Console.WriteLine($"{releaseYear} ({duration} mins) {rating}");
-
-            //genre (Color | Black White)
-            //Console.WriteLine(genre + " (" + isColor + ")");
-            //if (isColor)
-            //    Console.WriteLine($"{genre} (Color)");
-            //else
-            //    Console.WriteLine($"{genre} (Black and White)");
-            //Conditional operator
-            Console.WriteLine($"{genre} ({(isColor ? "Color" : "Black and White")})");
-
-            //Console.WriteLine(duration);
-            //Console.WriteLine(isColor);
-            //Console.WriteLine(rating);
-            //Console.WriteLine(genre);
-            Console.WriteLine(description);
-        }
-
-        static bool ConfirmQuit ()
-        {
-            return ReadBoolean("Are you sure you want to quit (y/n)? ");
-        }
-
-        private static void AddMovie () 
+        // Adds a movie
+        private static void AddMovie ()
         {
             title = ReadString("Enter a movie title: ", true);
             duration = ReadInt32("Enter duration in minutes (>= 0): ", 0);
@@ -96,7 +108,48 @@ namespace MovieLib.ConsoleHost
             description = ReadString("Enter a description (optional): ", false);
         }
 
-        //Unit 1 only!!!
+        private static void DeleteMovie ()
+        {
+            if (String.IsNullOrEmpty(title))
+            {
+                Console.WriteLine("No movie to delete");
+                return;
+            };
+
+            //Confirm and delete the movie
+            if (ReadBoolean($"Are you sure you want to delete '{title}' (Y/N)"))
+                title = "";
+        }
+
+        //View a movie
+        private static void ViewMovie ()
+        {
+            //Does movie exist
+            if (String.IsNullOrEmpty(title))
+            {
+                Console.WriteLine("No movie to view");
+                return;
+            };
+
+            Console.WriteLine(title);
+
+            //Desired format: releaseYear (duration mins) rating
+            
+            //Formatting 1 - string concatenation
+            //  Console.WriteLine(releaseYear + " (" + duration + " mins) " + rating);
+            //Formatting 2 - string formatting
+            //  Console.WriteLine("{0} ({1} mins) {2}", releaseYear, duration, rating);
+            //  string temp = String.Format("{0} ({1} mins) {2}", releaseYear, duration, rating);
+            //  Console.WriteLine(temp);
+            //Formatting 3 - string interpolation
+            Console.WriteLine($"{releaseYear} ({duration} mins) {rating}");
+            
+            //Conditional operator
+            Console.WriteLine($"{genre} ({(isColor ? "Color" : "Black and White")})");
+            Console.WriteLine(description);
+        }
+
+        //TODO: Fix these variables to remove warnings
         static string title;
         static int duration;
         static int releaseYear;
@@ -105,6 +158,15 @@ namespace MovieLib.ConsoleHost
         static bool isColor;
         static string description;
 
+        #region Helper Functions
+
+        // Get confirmation from user to quit
+        static bool ConfirmQuit ()
+        {
+            return ReadBoolean("Are you sure you want to quit (y/n)? ");
+        }
+                
+        // Reads a boolean input from user
         static bool ReadBoolean ( string message )
         {            
             Console.Write(message);
@@ -125,7 +187,8 @@ namespace MovieLib.ConsoleHost
             } while (true);
         }
 
-        private static int ReadInt32 ( string message, int minimumValue )
+        // Reads an integral value from user
+        static int ReadInt32 ( string message, int minimumValue )
         {
             Console.Write(message);
 
@@ -156,44 +219,23 @@ namespace MovieLib.ConsoleHost
         //  Functions are actions -> verbs
         //  Functions are always Pascal cased
         // Functions should do a single, logical thing
+
+        // Reads a(n), optionally required, string from the user
         private static string ReadString ( string message, bool required )
         {
             Console.WriteLine(message);
 
-            string input = Console.ReadLine();
-
-            //TODO: Validate input, if required
-
-            return input;
-        }
-
-        static char DisplayMenu ()
-        {
-            Console.WriteLine("A)dd Movie");
-            Console.WriteLine("V)iew Movie");
-            Console.WriteLine("E)dit Movie");
-            Console.WriteLine("D)elete Movie");
-            Console.WriteLine("Q)uit");
-
-            string input = Console.ReadLine();
-
-            //Validate input
-            if (input == "A")
-                return 'A';
-            else if (input == "V")
-                return 'V';
-            else if (input == "E")
-                return 'E';
-            else if (input == "D")
-                return 'D';
-            else if (input == "Q")
-                return 'Q';
-            else
+            do
             {
-                Console.WriteLine("Invalid input");
-                return 'X';
-            };
+                string input = Console.ReadLine();
+
+                //Validate if required
+                if (!required || !String.IsNullOrEmpty(input))
+                    return input;
+
+                Console.WriteLine("Value is required");
+            } while (true);
         }
-            
+        #endregion
     }
 }

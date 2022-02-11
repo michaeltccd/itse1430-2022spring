@@ -8,10 +8,16 @@ namespace Demo
         {
             //DemoPrimitives();
             //DemoArithmetic();
+            DemoStrings();
+        }
 
-            //Strings
-            var payRate = 8.75;
+        static void DemoStrings ()
+        { 
+            // All expressions convertible to string using `.ToString()` function
+            var payRate = 8.75;            
             var payRateString = payRate.ToString();
+            payRateString = 5.ToString();
+            payRateString = (4 + 5).ToString();
 
             // Escape sequences - character sequence that represents something that is unprintable
             //    \n - newline
@@ -21,6 +27,40 @@ namespace Demo
             string literal = "Hello World\nBob";
             string filePath = "C:\\windows\\system32";
             string filePath2 = @"C:\windows\system32";  //Verbatim string - ignores escape sequences
+
+            string nullString = null;  //no value
+            string emptyString = "";
+            string emptyString2 = String.Empty;
+            bool areNotEqual = nullString == emptyString;
+            //nullString.ToString();     //Crash
+            //nullString + emptyString;  //OK
+
+            //Determine if string is null or empty
+            bool isEmpty = (emptyString == null || emptyString == ""); //Don't do this!!!
+            isEmpty = String.IsNullOrEmpty(emptyString);
+            isEmpty = emptyString.Length == 0;  //Will crash if null
+
+            // Case sensitive
+            string lowerName = "bob", upperName = "BOB";
+            bool areStringsEqual = lowerName == upperName;  //False
+            areStringsEqual = lowerName.ToUpper() == upperName.ToUpper(); //Normalize, true
+            areStringsEqual = String.Compare(lowerName, upperName, true) == 0;  //StringComparison.IgnoreCase
+            areStringsEqual = String.Equals(lowerName, upperName, StringComparison.CurrentCultureIgnoreCase);
+
+            // Useful string functions
+            bool startsWithLetter = lowerName.StartsWith("B");  //EndsWith("B");
+            lowerName = "  Bob  ";
+            lowerName = lowerName.Trim();  //"Bob"  //TrimStart, TrimEnd
+
+            //Add leading spaces
+            lowerName = lowerName.PadLeft(20);  //PadRight
+
+            //Joining strings
+            string fullName = String.Join(' ', "Bob", "William", "Smith");  //"Bob William Smith"
+            string numbers = String.Join(", ", 1, 2, 3, 4);   //"1, 2, 3, 4"
+
+            //Split a string
+            var tokens = "1 | 2 | 3 | 4".Split("|");
         }
 
         static void DemoArithmetic ()
