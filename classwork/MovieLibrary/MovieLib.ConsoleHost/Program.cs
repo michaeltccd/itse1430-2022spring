@@ -99,40 +99,42 @@ namespace MovieLib.ConsoleHost
         // Adds a movie
         private static void AddMovie ()
         {
-            title = ReadString("Enter a movie title: ", true);
-            duration = ReadInt32("Enter duration in minutes (>= 0): ", 0);
-            releaseYear = ReadInt32("Enter the release year: ", 1900);
-            rating = ReadString("Enter a rating (e.g. PG, PG-13): ", true);
-            genre = ReadString("Enter a genre (optional): ", false);
-            isColor = ReadBoolean("In color (Y/N)?");
-            description = ReadString("Enter a description (optional): ", false);
+            movie = new Movie();
+
+            movie.title = ReadString("Enter a movie title: ", true);
+            movie.duration = ReadInt32("Enter duration in minutes (>= 0): ", 0);
+            movie.releaseYear = ReadInt32("Enter the release year: ", 1900);
+            movie.rating = ReadString("Enter a rating (e.g. PG, PG-13): ", true);
+            movie.genre = ReadString("Enter a genre (optional): ", false);
+            movie.isColor = ReadBoolean("In color (Y/N)?");
+            movie.description = ReadString("Enter a description (optional): ", false);
         }
 
         // Deletes a movie
         private static void DeleteMovie ()
         {
-            if (String.IsNullOrEmpty(title))
+            if (String.IsNullOrEmpty(movie.title))
             {
                 Console.WriteLine("No movie to delete");
                 return;
             };
 
             //Confirm and delete the movie
-            if (ReadBoolean($"Are you sure you want to delete '{title}' (Y/N)"))
-                title = "";
+            if (ReadBoolean($"Are you sure you want to delete '{movie.title}' (Y/N)"))
+                movie.title = "";
         }
 
         //View a movie
         private static void ViewMovie ()
         {
             //Does movie exist
-            if (String.IsNullOrEmpty(title))
+            if (String.IsNullOrEmpty(movie.title))
             {
                 Console.WriteLine("No movie to view");
                 return;
             };
 
-            Console.WriteLine(title);
+            Console.WriteLine(movie.title);
 
             //Desired format: releaseYear (duration mins) rating
             
@@ -143,22 +145,16 @@ namespace MovieLib.ConsoleHost
             //  string temp = String.Format("{0} ({1} mins) {2}", releaseYear, duration, rating);
             //  Console.WriteLine(temp);
             //Formatting 3 - string interpolation
-            Console.WriteLine($"{releaseYear} ({duration} mins) {rating}");
+            Console.WriteLine($"{movie.releaseYear} ({movie.duration} mins) {movie.rating}");
             
             //Conditional operator
-            Console.WriteLine($"{genre} ({(isColor ? "Color" : "Black and White")})");
-            Console.WriteLine(description);
+            Console.WriteLine($"{movie.genre} ({(movie.isColor ? "Color" : "Black and White")})");
+            Console.WriteLine(movie.description);
         }
 
         //TODO: Fix these variables to remove warnings
-        static string title;
-        static int duration;
-        static int releaseYear;
-        static string rating;
-        static string genre;
-        static bool isColor;
-        static string description;
-
+        static Movie movie;
+        
         #region Helper Functions
 
         // Get confirmation from user to quit
