@@ -163,11 +163,11 @@ Add a member to represent the starting room for the game world.
 
 ## Story 6 - Implement Player State
 
-create a class to track the player's state such as position.
+Create a class to track the player's state such as position.
 
 ### Description
 
-Create a class to represent the state of the player.
+Create a `Player` class to represent the state of the player.
 At a minimum the class should track the room the player is currently in.
 
 Create an instance of the class when the game starts.
