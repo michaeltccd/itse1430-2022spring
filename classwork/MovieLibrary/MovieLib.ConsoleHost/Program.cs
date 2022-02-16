@@ -1,7 +1,6 @@
 ﻿/*
  * Classwork
- * ITSE 1430
- * Lab 1
+ * ITSE 1430 
  */
 using System;
 
@@ -65,6 +64,7 @@ namespace MovieLib.ConsoleHost
             } while (!done);
         }
 
+        //Display the main menu
         static char DisplayMenu ()
         {
             Console.WriteLine("Movie Library");
@@ -108,6 +108,7 @@ namespace MovieLib.ConsoleHost
             description = ReadString("Enter a description (optional): ", false);
         }
 
+        // Deletes a movie
         private static void DeleteMovie ()
         {
             if (String.IsNullOrEmpty(title))
