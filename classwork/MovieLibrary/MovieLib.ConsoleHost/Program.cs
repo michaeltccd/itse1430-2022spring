@@ -101,40 +101,54 @@ namespace MovieLib.ConsoleHost
         {
             movie = new Movie();
 
-            movie.title = ReadString("Enter a movie title: ", true);
-            movie.duration = ReadInt32("Enter duration in minutes (>= 0): ", 0);
-            movie.releaseYear = ReadInt32("Enter the release year: ", 1900);
-            movie.rating = ReadString("Enter a rating (e.g. PG, PG-13): ", true);
-            movie.genre = ReadString("Enter a genre (optional): ", false);
-            movie.isColor = ReadBoolean("In color (Y/N)?");
-            movie.description = ReadString("Enter a description (optional): ", false);
+            do
+            {
+                movie.Title = ReadString("Enter a movie title: ", true);
+                movie._duration = ReadInt32("Enter duration in minutes (>= 0): ", 0);
+                movie._releaseYear = ReadInt32("Enter the release year: ", 1900);
+                movie._rating = ReadString("Enter a rating (e.g. PG, PG-13): ", true);
+                movie._genre = ReadString("Enter a genre (optional): ", false);
+                movie._isClassic = ReadBoolean("Is classic (Y/N)?");
+                movie._description = ReadString("Enter a description (optional): ", false);
+
+                //movie.isBlackAndWhite = movie.releaseYear <= 1939;
+                movie.CalculateBlackAndWhite();
+
+                var error = movie.Validate();
+                if (String.IsNullOrEmpty(error))
+                    return;
+
+                Console.WriteLine(error);
+            } while (true);
         }
 
         // Deletes a movie
         private static void DeleteMovie ()
         {
-            if (String.IsNullOrEmpty(movie.title))
+            //if (String.IsNullOrEmpty(movie.title))
+            if (movie == null)
             {
                 Console.WriteLine("No movie to delete");
                 return;
             };
 
             //Confirm and delete the movie
-            if (ReadBoolean($"Are you sure you want to delete '{movie.title}' (Y/N)"))
-                movie.title = "";
+            if (ReadBoolean($"Are you sure you want to delete '{movie._title}' (Y/N)"))
+                movie = null;
         }
 
         //View a movie
         private static void ViewMovie ()
         {
             //Does movie exist
-            if (String.IsNullOrEmpty(movie.title))
+            //if (String.IsNullOrEmpty(movie.title))
+            if (movie == null)
             {
                 Console.WriteLine("No movie to view");
                 return;
             };
 
-            Console.WriteLine(movie.title);
+            Console.WriteLine(movie._title);
 
             //Desired format: releaseYear (duration mins) rating
             
@@ -145,11 +159,11 @@ namespace MovieLib.ConsoleHost
             //  string temp = String.Format("{0} ({1} mins) {2}", releaseYear, duration, rating);
             //  Console.WriteLine(temp);
             //Formatting 3 - string interpolation
-            Console.WriteLine($"{movie.releaseYear} ({movie.duration} mins) {movie.rating}");
+            Console.WriteLine($"{movie._releaseYear} ({movie._duration} mins) {movie._rating}");
             
             //Conditional operator
-            Console.WriteLine($"{movie.genre} ({(movie.isColor ? "Color" : "Black and White")})");
-            Console.WriteLine(movie.description);
+            Console.WriteLine($"{movie._genre} ({(movie._isClassic ? "Classic" : "")})");
+            Console.WriteLine(movie._description);
         }
 
         //TODO: Fix these variables to remove warnings
