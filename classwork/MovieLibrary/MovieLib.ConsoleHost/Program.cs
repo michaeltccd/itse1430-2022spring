@@ -173,7 +173,38 @@ namespace MovieLib.ConsoleHost
 
         //TODO: Fix these variables to remove warnings
         static Movie movie;
-        
+
+        //Type checking
+        static void Display ( object data )
+        {
+            //Assume a string
+
+            //C-style cast ::= (T) E
+            //    Runtime error if wrong
+            //    No way to validate at runtime
+            //    Still compile time safe (string)10;
+            // is-operator ::= E is T  (boolean)
+            //    Still need a type cast 
+            // as-operator ::= E as T (returns T or null)
+            //    Only works with T if T is nullable (string, object, class types)
+            // pattern-matching ::= E is T id (boolean with id as typed value if true)
+            var dataString = (string)data;                        
+
+            if (data is string)
+            {
+                dataString = (string)data;
+            };
+
+            //data as int
+            dataString = data as string;
+            if (dataString != null) { };
+
+            //Pattern matching
+            if (data is string dataString2)
+            {
+            };
+        }
+
         #region Helper Functions
 
         // Get confirmation from user to quit
