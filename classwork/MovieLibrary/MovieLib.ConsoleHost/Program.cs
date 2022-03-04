@@ -11,6 +11,9 @@ namespace MovieLib.ConsoleHost
         //Entry point
         static void Main ( string[] args )
         {
+            //_movies = new MovieDatabase();
+            //_movies.Name = "My Movies";
+            
             //Block style declaration - all variables declared at top of function
             //On demand/inline declaration - variables are declared as needed
             var done = false;
@@ -173,6 +176,7 @@ namespace MovieLib.ConsoleHost
 
         //TODO: Fix these variables to remove warnings
         static Movie movie;
+        static MemoryMovieDatabase _movies = new MemoryMovieDatabase();
 
         //Type checking
         static void Display ( object data )

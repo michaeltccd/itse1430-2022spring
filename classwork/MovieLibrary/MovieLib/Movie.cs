@@ -23,8 +23,7 @@ namespace MovieLib
             set { _title = value?.Trim(); }
         }
         private string _title;
-
-        //Auto property syntax when property is simply reading/writing backing field
+        
         /// <summary>Gets or sets the duration in minutes.</summary>
         public int Duration { get; set; }
 
@@ -62,14 +61,12 @@ namespace MovieLib
             set { _description = value; }
         }
         private string _description;
-
-        //Calculated property := BW <= 1939
-        // No setter so it cannot be written to
+                
         /// <summary>Determines if the movie is black and white.</summary>
         public bool IsBlackAndWhite
         {
             get { return ReleaseYear <= 1939; }
-            //set { }
+            //set { }   // No setter so it cannot be written to
         }
         //private bool _isBlackAndWhite;
 
@@ -79,6 +76,7 @@ namespace MovieLib
         //}
 
         //All instance methods have a hidden this parameter that represents the instance
+
         /// <summary>Validates the instance.</summary>
         /// <returns>Returns error message if any or empty string otherwise.</returns>
         public string Validate ( /* Movie this */ )
@@ -141,6 +139,8 @@ namespace MovieLib
     //  Mixed acessibility
     //    Only on either getter or setter
     //    Must be more restrictive than property
+    //  Use auto property syntax when property is simply reading/writing backing field
+    //    Do not declare the backing field
     //  property-declaration ::= [access] [modifiers] T id { accessors }    
     //  accessors ::= full-accessors | auto-accessors
     //  full-accessors ::= [[access] get { S* }] [[access] set { S* }]
