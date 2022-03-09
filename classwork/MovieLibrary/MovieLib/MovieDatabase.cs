@@ -34,8 +34,6 @@ namespace MovieLib
 
         public string Name { get; set; }
 
-        //Virtual means derived types can override but base type has default implementation
-        //Override means a derived type is overriding a base type's implementation
         public virtual void Add ( Movie movie )
         {
         }

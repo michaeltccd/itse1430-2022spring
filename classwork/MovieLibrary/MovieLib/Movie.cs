@@ -113,42 +113,5 @@ namespace MovieLib
         //    private set { _id = value; }
         //}
         //private int _id;
-    }
-
-    #region Class Notes
-    // Class - wraps data and functionality
-    //   Naming: nouns, Pascal cased
-    //   Default accessibility: internal for a class, private for a class member    
-
-    //Access modifiers
-    //  public - everyone
-    //  internal - assembly only
-    //  private - declaring type
-
-    //Fields - where the data is stored
-    // Naming: nouns, camel cased, start with underscore
-    //   Readable and writable (assuming accessibility)
-    //   Work just like all other variables
-    // Do not expose publicly
-
-    //Properties - exposes data
-    //  Field syntax with methods being called
-    //  Can get (read) and/or set (write)
-    //    T getter ()
-    //    void setter ( T value )
-    //  Mixed acessibility
-    //    Only on either getter or setter
-    //    Must be more restrictive than property
-    //  Use auto property syntax when property is simply reading/writing backing field
-    //    Do not declare the backing field
-    //  property-declaration ::= [access] [modifiers] T id { accessors }    
-    //  accessors ::= full-accessors | auto-accessors
-    //  full-accessors ::= [[access] get { S* }] [[access] set { S* }]
-    //  auto-accessors ::= [[access] get;] [[access] set;]
-
-    // Handling null
-    //   null coalescing ::= E ?? E, find first non-null
-    //   null conditional ::= E?.M, execute M if E not null, changes type to T?
-    //   combined ::= E?.M ?? D, resets type back to T            
-    #endregion
+    }    
 }
