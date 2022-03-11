@@ -4,6 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <Company>ITSE 1430</Company>
+    <Product>Movie Library</Product>
+    <Authors>Your Name</Authors>
   </PropertyGroup>
 
 </Project>

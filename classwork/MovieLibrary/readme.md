@@ -30,6 +30,21 @@ class-member ::= field-decl | method-decl | property-decl | event-decl | ctor-de
 
 # Class Members
 
+The `this` keyword represents the current instance on which a member is called.
+It is rarely needed in code but can be used to disambiguate an identifier.
+
+```
+int age;
+void Foo ( int age )
+{
+    //Setting the parameter to 10
+    age = 10;
+
+    //Setting the field to 10
+    this.age = 10;
+}
+```
+
 ## Fields
 
 Stores data.
@@ -55,18 +70,56 @@ Private in most cases. Can be public if read only.
 
 Exposes data using a field-like syntax but backed by method(s).
 
+*Note:Properties do not store data.*
+
 ```
 property-decl ::= full-property-decl | auto-property-decl
 full-property-decl ::= [access] [modifiers] T id { [[access] get { S* }] [[access] set { S* }] }
 auto-property-decl ::= [access] [modifiers] T id { [[access] get;] [[access] set;] }
 ```
 
-Can optionally be read only (calculated) or write only (rare) by excluding accessors.
+The getter returns a value whenever the property is read. It has the signature `T get_id ()` and must return a value of T.
 
-getter has signature `T get_id ()` and must return a value of T.
-setter has signature `void set_id (T value)`.
+The setter is called when the property is written to. It has the signature `void set_id (T value)`.
 
-*Note:Properties do not store data.*
+### Calculated Properties
+
+A property may optionally be read only (calculated) or write only (rare) by excluding an accessor.
+This is most useful when returning a value that is calculated based upon other values.
+
+```
+//Read only property
+public int AgeInYears
+{
+    get { return DateTime.Today - DateOfBirth; }
+}
+
+//Write only property
+public string Password
+{
+    set { _password = value; }
+}
+```
+
+### Auto Properties
+
+When a property simply gets or sets a backing field then the auto-property syntax can be used instead.
+
+```
+public int Age { get; set;}
+
+//Equivalent to
+public int Age 
+{
+    get { return _age; }
+    set { _age = value;}
+}
+private int _age;
+```
+
+Mixed accessibility and optional getter/setters are still allowed.
+
+*Note: Do not declare the backing field.*
 
 ### Naming
 
@@ -79,15 +132,62 @@ Any but often `public`.
 
 Can use a more restrictive accessibility on either the getter or setter if desired.
 
-//  Use auto property syntax when property is simply reading/writing backing field
-//    Do not declare the backing field
-//  property-declaration ::= [access] [modifiers] T id { accessors }    
-//  accessors ::= full-accessors | auto-accessors
-//  full-accessors ::= [[access] get { S* }] [[access] set { S* }]
-//  auto-accessors ::= [[access] get;] [[access] set;]
+## Methods
 
-// Handling null
-//   null coalescing ::= E ?? E, find first non-null
-//   null conditional ::= E?.M, execute M if E not null, changes type to T?
-//   combined ::= E?.M ?? D, resets type back to T            
+Functions defined in a class.
+
+All the standard "function" rules already discussed apply to methods.
+
+# Null Handling
+
+Attempting to do most anything with a `null` instance will cause a runtime error.
+Code should deal with `null` on reference types.
+
+null-coalesce ::= E ?? E
+null-conditional ::= E?.Member
+
+## Null Coalescing
+
+Selects the first non-`null` expression.
+
+```
+public string Name
+{
+   // Returns the name, if not null, or an empty string otherwise
+   get { return _name ?? ""; }
+}
+```
+
+## Null Conditional
+
+Calls a member of a class if the instance is not `null`.
+
+```
+//Trims the string if it is not null
+var trimmedValue = value?.Trim();
+```
+
+The call is skipped if the instance is `null` and therefore it changes the type of the resulting expression
+to be either the original type T or `null`. Hence value types become nullable.
+
+```
+public class Person
+{
+    public int Age { get; set; }
+}
+
+void PrintAge ( Person person )
+{
+    //Type remains the same but will crash if instance is null
+    int age = person.Age;
+
+    //Type is now nullable int but will not crash if instance is null
+    int? nullableAge = person?.Age;
+}
+```
     
+To work around the type change it is common to combine the null conditional operator with the null coalescing.
+
+```
+int age = person?.Age ?? 0;
+```
