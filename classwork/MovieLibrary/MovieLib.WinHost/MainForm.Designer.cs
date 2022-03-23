@@ -38,6 +38,7 @@ namespace MovieLib.WinHost
             this._miCharacterDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._miHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this._lstMovies = new System.Windows.Forms.ListBox();
             this._mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,12 +91,14 @@ namespace MovieLib.WinHost
             this._miCharacterEdit.Name = "_miCharacterEdit";
             this._miCharacterEdit.Size = new System.Drawing.Size(180, 22);
             this._miCharacterEdit.Text = "&Edit";
+            this._miCharacterEdit.Click += new System.EventHandler(this.OnMovieEdit);
             // 
             // _miCharacterDelete
             // 
             this._miCharacterDelete.Name = "_miCharacterDelete";
             this._miCharacterDelete.Size = new System.Drawing.Size(180, 22);
             this._miCharacterDelete.Text = "&Delete";
+            this._miCharacterDelete.Click += new System.EventHandler(this.OnMovieDelete);
             // 
             // helpToolStripMenuItem
             // 
@@ -112,11 +115,21 @@ namespace MovieLib.WinHost
             this._miHelpAbout.Text = "&About";
             this._miHelpAbout.Click += new System.EventHandler(this.OnHelpAbout);
             // 
+            // _lstMovies
+            // 
+            this._lstMovies.FormattingEnabled = true;
+            this._lstMovies.ItemHeight = 15;
+            this._lstMovies.Location = new System.Drawing.Point(13, 40);
+            this._lstMovies.Name = "_lstMovies";
+            this._lstMovies.Size = new System.Drawing.Size(749, 394);
+            this._lstMovies.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._lstMovies);
             this.Controls.Add(this._mainMenu);
             this.MainMenuStrip = this._mainMenu;
             this.Name = "MainForm";
@@ -139,6 +152,7 @@ namespace MovieLib.WinHost
         private System.Windows.Forms.ToolStripMenuItem _miCharacterDelete;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _miHelpAbout;
+        private System.Windows.Forms.ListBox _lstMovies;
     }
 }
 

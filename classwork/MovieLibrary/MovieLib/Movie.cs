@@ -81,16 +81,11 @@ namespace MovieLib
         /// <returns>Returns error message if any or empty string otherwise.</returns>
         public string Validate ( /* Movie this */ )
         {
-            //var now = DateTime.Now;
-
-            //var title = "";
-
             //Title is required
             if (String.IsNullOrEmpty(_title))
                 return "Title is required";
 
             if (Duration < 0)
-            //if (this.duration < 0)
                 return "Duration must be at least 0";
 
             if (ReleaseYear < MinimumReleaseYear)
@@ -99,9 +94,9 @@ namespace MovieLib
             if (String.IsNullOrEmpty(Rating))
                 return "Rating is required";
 
-            //Special rule - no classic movies before 1940
-            if (IsClassic && ReleaseYear < 1940)
-                return "Release Year must be at least 1940 to be a classic";
+            ////Special rule - no classic movies before 1940
+            //if (IsClassic && ReleaseYear < 1940)
+            //    return "Release Year must be at least 1940 to be a classic";
 
             return "";
         }
@@ -113,5 +108,10 @@ namespace MovieLib
         //    private set { _id = value; }
         //}
         //private int _id;
+
+        public override string ToString ()
+        {
+            return $"{Title} ({ReleaseYear})";
+        }
     }    
 }

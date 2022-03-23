@@ -9,4 +9,8 @@
     <Authors>Your Name</Authors>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MovieLib\MovieLib.csproj" />
+  </ItemGroup>
+
 </Project>
