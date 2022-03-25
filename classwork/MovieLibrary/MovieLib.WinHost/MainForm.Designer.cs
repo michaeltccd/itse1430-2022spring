@@ -50,7 +50,7 @@ namespace MovieLib.WinHost
             this.helpToolStripMenuItem});
             this._mainMenu.Location = new System.Drawing.Point(0, 0);
             this._mainMenu.Name = "_mainMenu";
-            this._mainMenu.Size = new System.Drawing.Size(800, 24);
+            this._mainMenu.Size = new System.Drawing.Size(906, 24);
             this._mainMenu.TabIndex = 0;
             this._mainMenu.Text = "menuStrip1";
             // 
@@ -117,18 +117,19 @@ namespace MovieLib.WinHost
             // 
             // _lstMovies
             // 
+            this._lstMovies.Dock = System.Windows.Forms.DockStyle.Fill;
             this._lstMovies.FormattingEnabled = true;
             this._lstMovies.ItemHeight = 15;
-            this._lstMovies.Location = new System.Drawing.Point(13, 40);
+            this._lstMovies.Location = new System.Drawing.Point(0, 24);
             this._lstMovies.Name = "_lstMovies";
-            this._lstMovies.Size = new System.Drawing.Size(749, 394);
+            this._lstMovies.Size = new System.Drawing.Size(906, 477);
             this._lstMovies.TabIndex = 1;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(906, 501);
             this.Controls.Add(this._lstMovies);
             this.Controls.Add(this._mainMenu);
             this.MainMenuStrip = this._mainMenu;
