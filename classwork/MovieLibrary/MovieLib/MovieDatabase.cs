@@ -56,16 +56,4 @@ namespace MovieLib
 
         protected void Foo () { }
     }
-
-    public class MemoryMovieDatabase : MovieDatabase
-    {
-        public MemoryMovieDatabase () : base("Memory Movies")
-        {
-        }
-
-        public override void Add ( Movie movie )
-        {
-            base.Add(movie);
-        }
-    }
 }

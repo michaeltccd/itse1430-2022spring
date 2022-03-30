@@ -47,6 +47,11 @@ namespace MovieLib.WinHost
 
         private void OnSave ( object sender, EventArgs e )
         {
+            //Check all children for valid status
+            //Ensure all children are validated
+            if (!ValidateChildren())
+                return;
+
             //Create a new movie
             var movie = new Movie();
 
