@@ -12,6 +12,24 @@ namespace MovieLib.WinHost
             InitializeComponent();
         }
 
+        protected override void OnLoad ( EventArgs e )
+        {
+            base.OnLoad(e);
+
+            //If database is empty
+            if (_movies.GetAll().Length == 0)
+            {
+                if (MessageBox.Show(this, "Do you want to seed the database?", "Seed",
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    //Seed database
+                    var seed = new SeedDatabase();
+                    seed.Seed(_movies);
+                    UpdateUI();
+                };
+            };
+        }
+
         protected override void OnFormClosing ( FormClosingEventArgs e )
         {
             //Confirm exit
@@ -47,6 +65,7 @@ namespace MovieLib.WinHost
                 var error = _movies.Add(dlg.Movie);
                 if (String.IsNullOrEmpty(error))
                 {
+                    dlg.Movie.Title = "Star Wars";
                     UpdateUI();
                     return;
                 };
@@ -57,25 +76,29 @@ namespace MovieLib.WinHost
 
         private void OnMovieEdit ( object sender, EventArgs e )
         {
-            var menuItem = sender as ToolStripMenuItem;
-            //sender == _miCharacterEdit;
-
             //Get selected movie
             var movie = GetSelectedMovie();
             if (movie == null)
                 return;
 
-            //TODO: Get selected movie
             var dlg = new MovieForm();
             dlg.Movie = movie;
 
-            //Show modally - blocking call
-            if (dlg.ShowDialog(this) != DialogResult.OK)
-                return;
+            do
+            {
+                if (dlg.ShowDialog(this) != DialogResult.OK)
+                    return;
 
-            //TODO: Update movie
-            _movie = dlg.Movie;
-            UpdateUI();            
+                //TODO: Update movie
+                var error = _movies.Update(movie.Id, dlg.Movie);
+                if (String.IsNullOrEmpty(error))
+                {
+                    UpdateUI();
+                    return;
+                };
+
+                MessageBox.Show(this, error, "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } while (true);
         }
 
         private void OnMovieDelete ( object sender, EventArgs e )
@@ -91,7 +114,7 @@ namespace MovieLib.WinHost
                 return;
 
             //TODO: Delete
-            _movie = null;
+            _movies.Delete(movie.Id);
             UpdateUI();
         }
 
@@ -105,10 +128,22 @@ namespace MovieLib.WinHost
             _lstMovies.Items.Clear();
 
             var movies = _movies.GetAll();
+            //BreakMovies(movies);
+
             _lstMovies.Items.AddRange(movies);
         }
 
-        private Movie _movie;
+        private void BreakMovies ( Movie[] movies )
+        {
+            if (movies.Length > 0)
+            {
+                var firstMovie = movies[0];
+
+                ///movies[0] = new Movie();
+                firstMovie.Title = "Star Wars";
+            };
+        }
+
         private readonly MemoryMovieDatabase _movies = new MemoryMovieDatabase();
     }
 }

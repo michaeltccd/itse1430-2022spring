@@ -23,7 +23,8 @@ namespace MovieLib.Memory
                 return "Movie must be unique";
 
             //Add
-            _movies.Add(movie);
+            movie.Id = _id++;
+            _movies.Add(movie.Copy());
             return "";
         }
 
@@ -39,23 +40,78 @@ namespace MovieLib.Memory
             return null;
         }
 
-        public void Delete ( Movie movie )
-        { }
-
-        public Movie Get ()
+        public void Delete ( int id )
         {
+            //Find by movie.Id;
+            foreach (var item in _movies)
+            {
+                if (item.Id == id)
+                {
+                    _movies.Remove(item);
+                    return;
+                };
+            };
+        }
+
+        public Movie Get ( int id )
+        {
+            //var movie = FindById(id);
+            //return movie?.Copy();
+            return FindById(id)?.Copy();
+        }
+
+        private Movie FindById ( int id )
+        {
+            foreach (var item in _movies)
+            {
+                if (item.Id == id)
+                    return item;
+            };
+
             return null;
         }
 
         public Movie[] GetAll()
         {
-            //TODO: Broken
-            return _movies.ToArray();
+            //Need to clone movies so changes outside database do not impact our copy
+            //return _movies.ToArray();
+            var items = new Movie[_movies.Count];
+            var index = 0;
+            foreach (var movie in _movies)
+                items[index++] = movie.Copy();
+
+            return items;
         }
 
-        public void Update ( Movie movie )
-        { }
+        public string Update ( int id, Movie movie )
+        {
+            //TODO: Validate
+            if (id <= 0)
+                return "Id must be greater than or equal to 0";
+            if (movie == null)
+                return "Movie cannot be null";
+            var error = movie.Validate();
+            if (!String.IsNullOrEmpty(error))
+                return error;
+
+            //Title must be unique or same movie
+            var existing = FindByName(movie.Title);
+            if (existing != null && existing.Id != id)
+                return "Movie must be unique";
+
+            //Make sure movie already exists
+            existing = FindById(id);
+            if (existing == null)
+                return "Movie does not exist";
+
+            //Update            
+            existing.CopyFrom(movie);
+            return "";
+        }
 
         private readonly List<Movie> _movies = new List<Movie>();
+
+        //Simple identifier system
+        private int _id = 1;
     }
 }

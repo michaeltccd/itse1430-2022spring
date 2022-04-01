@@ -68,14 +68,6 @@ namespace MovieLib
             get { return ReleaseYear <= 1939; }
             //set { }   // No setter so it cannot be written to
         }
-        //private bool _isBlackAndWhite;
-
-        //private void CalculateBlackAndWhite ()
-        //{
-        //    _isBlackAndWhite = ReleaseYear <= 1939;
-        //}
-
-        //All instance methods have a hidden this parameter that represents the instance
 
         /// <summary>Validates the instance.</summary>
         /// <returns>Returns error message if any or empty string otherwise.</returns>
@@ -102,16 +94,55 @@ namespace MovieLib
         }
 
         /// <summary>Gets the unique ID of the movie.</summary>
-        public int Id { get; private set; }
-        //{
-        //    get { return _id; }
-        //    private set { _id = value; }
-        //}
-        //private int _id;
+        public int Id { get; set; }
 
         public override string ToString ()
         {
             return $"{Title} ({ReleaseYear})";
+        }
+
+        public Movie Copy ()
+        {
+            //var item = new Movie();
+            //item.Id = Id;
+            //item.Title = Title;
+            //item.Description = Description;
+            //item.Duration = Duration;
+            //item.ReleaseYear = ReleaseYear;
+            //item.Genre = Genre;
+            //item.Rating = Rating;
+            //item.IsClassic = IsClassic;
+
+            // return item;
+
+            //Object initializer syntax
+            // Only works with new
+            // Steps:
+            //  1. Remove semicolon at end of new, add curly braces
+            //  2. Indent for readability
+            //  3. Replace semicolons with commas
+            //  4. Remove instance name
+            return new Movie() {
+                        Id = Id,
+                        Title = Title,
+                        Description = Description,
+                        Duration = Duration,
+                        ReleaseYear = ReleaseYear,
+                        Genre = Genre,
+                        Rating = Rating,
+                        IsClassic = IsClassic
+                    };
+        }
+
+        public void CopyFrom ( Movie source )
+        {
+            Title = source.Title;
+            Description = source.Description;
+            Duration = source.Duration;
+            ReleaseYear = source.ReleaseYear;
+            Genre = source.Genre;
+            Rating = source.Rating;
+            IsClassic = source.IsClassic;
         }
     }    
 }
