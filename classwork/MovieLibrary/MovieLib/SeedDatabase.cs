@@ -7,6 +7,8 @@ namespace MovieLib
     /// <summary>Seeds a movie database.</summary>
     public class SeedDatabase
     {
+        /// <summary>Seeds a database with movies.</summary>
+        /// <param name="database">The database to seed.</param>
         public void Seed ( MemoryMovieDatabase database )
         {
             database.Add(new Movie() {
@@ -26,15 +28,7 @@ namespace MovieLib
                 Rating = "PG",
                 IsClassic = true
             });
-
-            var item = new Movie() {
-                Title = "Dune",
-                Genre = "Science Fiction",
-                ReleaseYear = 1984,
-                Duration = 244,
-                Rating = "PG"
-            };
-            //database.Add(item);
+            
             database.Add(new Movie() {
                 Title = "Dune",
                 Genre = "Science Fiction",

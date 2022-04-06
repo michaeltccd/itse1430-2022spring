@@ -1,13 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieLib.Memory
 {
+    /// <summary>Provides an in-memory movie database.</summary>
     public class MemoryMovieDatabase
     {
+        /// <summary>Adds a movie to the database.</summary>
+        /// <param name="movie">The movie to add.</param>
+        /// <returns>The error message, if any.</returns>
+        /// <remarks>
+        /// Errors occur if:
+        /// <paramref name="movie"/> is null.
+        /// <paramref name="movie"/> is not valid.
+        /// A movie with the same title already exists.
+        /// </remarks>
         public string Add ( Movie movie )
         {
             //TODO: Validate
@@ -27,19 +35,9 @@ namespace MovieLib.Memory
             _movies.Add(movie.Copy());
             return "";
         }
-
-        private Movie FindByName ( string name )
-        {
-            //Foreach rules
-            // 1. loop variant is readonly
-            // 2. Array cannot change
-            foreach (var movie in _movies)
-                if (String.Equals(movie.Title, name, StringComparison.CurrentCultureIgnoreCase))
-                    return movie;
-
-            return null;
-        }
-
+        
+        /// <summary>Deletes a movie.</summary>
+        /// <param name="id">The ID of the movie to delete.</param>
         public void Delete ( int id )
         {
             //Find by movie.Id;
@@ -53,24 +51,18 @@ namespace MovieLib.Memory
             };
         }
 
+        /// <summary>Gets a movie.</summary>
+        /// <param name="id">The ID of the movie to get.</param>
+        /// <returns>The movie, if found.</returns>
         public Movie Get ( int id )
         {
             //var movie = FindById(id);
             //return movie?.Copy();
             return FindById(id)?.Copy();
         }
-
-        private Movie FindById ( int id )
-        {
-            foreach (var item in _movies)
-            {
-                if (item.Id == id)
-                    return item;
-            };
-
-            return null;
-        }
-
+        
+        /// <summary>Gets all the movies.</summary>
+        /// <returns>The movies in the database.</returns>
         public Movie[] GetAll()
         {
             //Need to clone movies so changes outside database do not impact our copy
@@ -83,6 +75,18 @@ namespace MovieLib.Memory
             return items;
         }
 
+        /// <summary>Updates an existing movie in the database.</summary>
+        /// <param name="id">The ID of the movie to update.</param>
+        /// <param name="movie">The updated movie.</param>
+        /// <returns>The error message, if any.</returns>
+        /// <remarks>
+        /// Errors occur if:
+        /// <paramref name="id"/> is less than or equal to zero.
+        /// <paramref name="movie"/> is null.
+        /// <paramref name="movie"/> is not valid.     
+        /// A movie with the same title already exists.
+        /// The movie cannot be found.
+        /// </remarks>
         public string Update ( int id, Movie movie )
         {
             //TODO: Validate
@@ -109,9 +113,35 @@ namespace MovieLib.Memory
             return "";
         }
 
+        #region Private Members
+
+        private Movie FindById ( int id )
+        {
+            foreach (var item in _movies)
+            {
+                if (item.Id == id)
+                    return item;
+            };
+
+            return null;
+        }
+
+        private Movie FindByName ( string name )
+        {
+            //Foreach rules
+            // 1. loop variant is readonly
+            // 2. Array cannot change
+            foreach (var movie in _movies)
+                if (String.Equals(movie.Title, name, StringComparison.CurrentCultureIgnoreCase))
+                    return movie;
+
+            return null;
+        }
+
         private readonly List<Movie> _movies = new List<Movie>();
 
         //Simple identifier system
-        private int _id = 1;
+        private int _id = 1;        
+        #endregion
     }
 }

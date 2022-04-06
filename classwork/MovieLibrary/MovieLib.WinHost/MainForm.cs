@@ -40,6 +40,8 @@ namespace MovieLib.WinHost
                 e.Cancel = true;
         }
 
+        #region Command Handlers
+
         private void OnFileExit ( object sender, EventArgs e )
         {
             Close();
@@ -118,6 +120,10 @@ namespace MovieLib.WinHost
             UpdateUI();
         }
 
+        #endregion
+
+        #region Private Members
+
         private Movie GetSelectedMovie ()
         {
             return _lstMovies.SelectedItem as Movie;
@@ -133,17 +139,19 @@ namespace MovieLib.WinHost
             _lstMovies.Items.AddRange(movies);
         }
 
-        private void BreakMovies ( Movie[] movies )
-        {
-            if (movies.Length > 0)
-            {
-                var firstMovie = movies[0];
+        //private void BreakMovies ( Movie[] movies )
+        //{
+        //    if (movies.Length > 0)
+        //    {
+        //        var firstMovie = movies[0];
 
-                ///movies[0] = new Movie();
-                firstMovie.Title = "Star Wars";
-            };
-        }
+        //        ///movies[0] = new Movie();
+        //        firstMovie.Title = "Star Wars";
+        //    };
+        //}
 
         private readonly MemoryMovieDatabase _movies = new MemoryMovieDatabase();
+
+        #endregion
     }
 }
