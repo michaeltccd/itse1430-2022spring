@@ -65,8 +65,7 @@ namespace MovieLib.WinHost
             movie.ReleaseYear = ReadAsInt32(_txtReleaseYear, -1);
 
             //Validate
-            var error = movie.Validate();
-            if (String.IsNullOrEmpty(error))
+            if (new ObjectValidator().TryValidateObject(movie, out var errors))                
             {
                 //Validate
                 Movie = movie;
@@ -75,8 +74,8 @@ namespace MovieLib.WinHost
                 return;
             };
 
-            //Display error
-            MessageBox.Show(this, error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //TODO: Display error, fix error message
+            MessageBox.Show(this, "Movie is invalid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void OnCancel ( object sender, EventArgs e )

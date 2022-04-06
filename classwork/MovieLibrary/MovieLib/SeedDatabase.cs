@@ -9,7 +9,7 @@ namespace MovieLib
     {
         /// <summary>Seeds a database with movies.</summary>
         /// <param name="database">The database to seed.</param>
-        public void Seed ( MemoryMovieDatabase database )
+        public void Seed ( IMovieDatabase database )
         {
             database.Add(new Movie() {
                 Title = "Jaws",

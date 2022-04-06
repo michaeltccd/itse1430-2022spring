@@ -5,8 +5,11 @@ using System.Linq;
 namespace MovieLib.Memory
 {
     /// <summary>Provides an in-memory movie database.</summary>
-    public class MemoryMovieDatabase
+    public class MemoryMovieDatabase : IMovieDatabase
     {
+        //Not visible in interface
+        public void Foo () { }
+
         /// <summary>Adds a movie to the database.</summary>
         /// <param name="movie">The movie to add.</param>
         /// <returns>The error message, if any.</returns>
@@ -21,9 +24,13 @@ namespace MovieLib.Memory
             //TODO: Validate
             if (movie == null)
                 return "Movie cannot be null";
-            var error = movie.Validate();
-            if (!String.IsNullOrEmpty(error))
+
+            //TODO: Fix validation message
+            if (!new ObjectValidator().TryValidateObject(movie, out var errors))
                 return "Movie is invalid";
+            //var error = movie.Validate();
+            //if (!String.IsNullOrEmpty(error))
+            //    return "Movie is invalid";
 
             //Title must be unique
             var existing = FindByName(movie.Title);
@@ -35,7 +42,7 @@ namespace MovieLib.Memory
             _movies.Add(movie.Copy());
             return "";
         }
-        
+
         /// <summary>Deletes a movie.</summary>
         /// <param name="id">The ID of the movie to delete.</param>
         public void Delete ( int id )
@@ -60,19 +67,26 @@ namespace MovieLib.Memory
             //return movie?.Copy();
             return FindById(id)?.Copy();
         }
-        
+
+        //Iterators - implementation of IEnumerable<T>
+        // Defer executes the method such that the method is called piecemeal on demand
+
         /// <summary>Gets all the movies.</summary>
         /// <returns>The movies in the database.</returns>
-        public Movie[] GetAll()
+        public IEnumerable<Movie> GetAll ()
         {
             //Need to clone movies so changes outside database do not impact our copy
             //return _movies.ToArray();
-            var items = new Movie[_movies.Count];
-            var index = 0;
+            //var items = new Movie[_movies.Count];
+            //var index = 0;
             foreach (var movie in _movies)
-                items[index++] = movie.Copy();
+            {
+                //System.Diagnostics.Debug.WriteLine($"Returning {movie.Title}");
+                //items[index++] = movie.Copy();
+                yield return movie.Copy();
+            };
 
-            return items;
+            //return items;
         }
 
         /// <summary>Updates an existing movie in the database.</summary>
@@ -94,9 +108,12 @@ namespace MovieLib.Memory
                 return "Id must be greater than or equal to 0";
             if (movie == null)
                 return "Movie cannot be null";
-            var error = movie.Validate();
-            if (!String.IsNullOrEmpty(error))
-                return error;
+
+            if (!new ObjectValidator().TryValidateObject(movie, out var errors))
+                return "Movie is invalid";
+            //var error = movie.Validate();
+            //if (!String.IsNullOrEmpty(error))
+            //  return error;
 
             //Title must be unique or same movie
             var existing = FindByName(movie.Title);
@@ -141,7 +158,7 @@ namespace MovieLib.Memory
         private readonly List<Movie> _movies = new List<Movie>();
 
         //Simple identifier system
-        private int _id = 1;        
+        private int _id = 1;
         #endregion
     }
 }
