@@ -14,19 +14,27 @@ namespace MovieLib.WinHost
             InitializeComponent();
         }
 
+        // Extension methods
+        //   Extend a type with a new method
+        //   Works with any type
+        //   Looks like an instance method (discoverable) but is a static method on a static class
+        //   Must be a static method of a public/internal static class
+        //   First parameter (the extended type) must be preceded with keyword `this`
+        // 
         protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
-                        
+
             //If database is empty
-            if (!_movies.GetAll().Any())
+            IEnumerable<Movie> items = _movies.GetAll();            
+            if (!items.Any())
             {
                 if (MessageBox.Show(this, "Do you want to seed the database?", "Seed",
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    //Seed database
-                    var seed = new SeedDatabase();
-                    seed.Seed(_movies);
+                    //Seed database                    
+                    //SeedDatabase.Seed(_movies);
+                    _movies.Seed();
                     UpdateUI();
                 };
             };
