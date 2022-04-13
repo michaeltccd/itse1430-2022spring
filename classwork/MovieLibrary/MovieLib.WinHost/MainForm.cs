@@ -13,14 +13,7 @@ namespace MovieLib.WinHost
         {
             InitializeComponent();
         }
-
-        // Extension methods
-        //   Extend a type with a new method
-        //   Works with any type
-        //   Looks like an instance method (discoverable) but is a static method on a static class
-        //   Must be a static method of a public/internal static class
-        //   First parameter (the extended type) must be preceded with keyword `this`
-        // 
+        
         protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
@@ -143,23 +136,22 @@ namespace MovieLib.WinHost
         {
             _lstMovies.Items.Clear();
 
-            var movies = _movies.GetAll();
-            //BreakMovies(movies);
+            //Approach 1
+            //foreach (var movie in movies)
+            //    _lstMovies.Items.Add(movie);
 
-            foreach (var movie in movies)
-                _lstMovies.Items.Add(movie);
+            //Approach 2
+            //var movies = _movies.GetAll()
+            //                    .OrderBy(x => x.Title)
+            //                    .ThenBy(x => x.ReleaseYear);
+
+            //Approach 3
+            var movies = from m in _movies.GetAll()
+                         orderby m.Title, m.ReleaseYear
+                         select m;
+
+            _lstMovies.Items.AddRange(movies.ToArray());
         }
-
-        //private void BreakMovies ( IEnumerable<Movie> movies )
-        //{
-        //    if (movies.Any())
-        //    {
-        //        var firstMovie = movies[0];
-
-        //        ///movies[0] = new Movie();
-        //        firstMovie.Title = "Star Wars";
-        //    };
-        //}
 
         private readonly IMovieDatabase _movies = new MemoryMovieDatabase();
 

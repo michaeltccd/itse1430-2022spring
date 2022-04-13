@@ -7,7 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieLib", "MovieLib\MovieL
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3C63DC15-8979-46D6-972F-CF4F29307A83}"
 	ProjectSection(SolutionItems) = preProject
-		readme.md = readme.md
+		advanced types.md = advanced types.md
+		classes.md = classes.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieLib.WinHost", "MovieLib.WinHost\MovieLib.WinHost.csproj", "{78F00FFB-E333-4500-A6D1-5C1B53B82DB3}"
