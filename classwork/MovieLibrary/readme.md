@@ -191,3 +191,28 @@ To work around the type change it is common to combine the null conditional oper
 ```
 int age = person?.Age ?? 0;
 ```
+
+- [Advanced Types](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-7/readme.adoc)
+  - [Interfaces](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-6/interfaces.adoc)
+    - [Using Interfaces](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-6/interfaces.adoc#working-with-interfaces)
+    - [Common Interfaces](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-6/interfaces.adoc#common-interfaces)
+    - [Implementing Interfaces](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-6/interfaces.adoc#implementing-interfaces)
+  - [Abstract Class](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-7/abstract-classes.adoc)
+  - [Static Class](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-7/static-classes.adoc)
+    - [Extension Methods](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-7/extension-methods.adoc)
+  - [LINQ](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-7/linq.adoc)
+    - [Common `IEnumerable<T>` Methods](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-7/linq-extension-methods.adoc)
+    - [Lambdas](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-7/lambda-expressions.adoc)
+    - [LINQ Syntax](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-7/linq-syntax.adoc)
+    - [Expression Bodies](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-7/expression-body.adoc)
+
+# Unit 7
+
+- [Exceptions](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/exceptions.adoc#exception-class)
+  - [Common Exceptions](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/exceptions.adoc#common-exceptions)
+  - [System Exceptions](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/exceptions.adoc#system-exceptions)
+- [Raising Exceptions](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/throwing-exceptions.adoc)
+  - [Throw Statement](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/throwing-exceptions.adoc#throw-statement)
+- [Handling Exceptions]()
+  - [Try-Catch Statement]()
+  - [Try-Finally Statement]()

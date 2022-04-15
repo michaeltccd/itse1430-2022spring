@@ -10,12 +10,12 @@ namespace MovieLib
         /// <exception cref="ArgumentNullException"><paramref name="movie"/> is null.</exception>
         /// <exception cref="ValidationException"><paramref name="movie"/> is invalid.</exception>
         /// <exception cref="InvalidOperationException">Movie is not unique.</exception>
-        string Add ( Movie movie );
+        Movie Add ( Movie movie );
 
         /// <summary>Deletes a movie.</summary>
         /// <param name="id">The ID of the movie.</param>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="id"/> is less than or equal to 0.</exception>
-        string Delete ( int id );
+        void Delete ( int id );
 
         /// <summary>Gets a movie, if any.</summary>
         /// <param name="id">The ID of the movie.</param>
@@ -34,6 +34,6 @@ namespace MovieLib
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="id"/> is less than or equal to 0.</exception>
         /// <exception cref="ValidationException"><paramref name="movie"/> is invalid.</exception>
         /// <exception cref="InvalidOperationException">Movie is not unique.</exception>
-        string Update ( int id, Movie movie );
+        void Update ( int id, Movie movie );
     }
 }

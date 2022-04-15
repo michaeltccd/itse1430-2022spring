@@ -18,11 +18,13 @@ namespace MovieLib
         {
             //get { return !String.IsNullOrEmpty(_title) ? _title : ""; }
             //get { return (_title != null) ? _title : ""; }
-            get { return _title ?? ""; }
+            //get { return _title ?? ""; }
+            get => _title ?? "";
 
             //set { _title = (value != null ) ? value.Trim() : null; }
             //set { _title = (value ?? "").Trim(); }
-            set { _title = value?.Trim(); }
+            //set { _title = value?.Trim(); }
+            set => _title = value?.Trim();
         }
         private string _title;
         
@@ -40,8 +42,8 @@ namespace MovieLib
         /// <summary>Gets or sets the rating.</summary>
         public string Rating
         {
-            get { return !String.IsNullOrEmpty(_rating) ? _rating : ""; }
-            set { _rating = value; }
+            get => !String.IsNullOrEmpty(_rating) ? _rating : "";
+            set => _rating = value;
         }
         private string _rating;
 
@@ -63,54 +65,50 @@ namespace MovieLib
             set { _description = value; }
         }
         private string _description;
-                
+
         /// <summary>Determines if the movie is black and white.</summary>
-        public bool IsBlackAndWhite
-        {
-            get { return ReleaseYear <= 1939; }
-            //set { }   // No setter so it cannot be written to
-        }
+        public bool IsBlackAndWhite => ReleaseYear <= 1939;
+        //public bool IsBlackAndWhite
+        //{
+        //    get => ReleaseYear <= 1939;
+        //    //get { return ReleaseYear <= 1939; }
+        //    //set { }   // No setter so it cannot be written to
+        //}
+        //Don't do this - it is a public field
+        //public bool IsBlackAndWhite2 = false;
        
         /// <summary>Gets the unique ID of the movie.</summary>
         public int Id { get; set; }
 
-        public override string ToString ()
-        {
-            return $"{Title} ({ReleaseYear})";
-        }
+        //Expression body
+        public override string ToString () => $"{Title} ({ReleaseYear})";        
+        //{
+        //    return $"{Title} ({ReleaseYear})";
+        //}
 
-        public Movie Copy ()
-        {
-            //var item = new Movie();
-            //item.Id = Id;
-            //item.Title = Title;
-            //item.Description = Description;
-            //item.Duration = Duration;
-            //item.ReleaseYear = ReleaseYear;
-            //item.Genre = Genre;
-            //item.Rating = Rating;
-            //item.IsClassic = IsClassic;
-
-            // return item;
-
-            //Object initializer syntax
-            // Only works with new
-            // Steps:
-            //  1. Remove semicolon at end of new, add curly braces
-            //  2. Indent for readability
-            //  3. Replace semicolons with commas
-            //  4. Remove instance name
-            return new Movie() {
-                        Id = Id,
-                        Title = Title,
-                        Description = Description,
-                        Duration = Duration,
-                        ReleaseYear = ReleaseYear,
-                        Genre = Genre,
-                        Rating = Rating,
-                        IsClassic = IsClassic
-                    };
-        }
+        public Movie Copy () => new Movie() {
+                Id = Id,
+                Title = Title,
+                Description = Description,
+                Duration = Duration,
+                ReleaseYear = ReleaseYear,
+                Genre = Genre,
+                Rating = Rating,
+                IsClassic = IsClassic
+            };
+        
+        //{            
+        //    return new Movie() {
+        //                Id = Id,
+        //                Title = Title,
+        //                Description = Description,
+        //                Duration = Duration,
+        //                ReleaseYear = ReleaseYear,
+        //                Genre = Genre,
+        //                Rating = Rating,
+        //                IsClassic = IsClassic
+        //            };
+        //}
 
         public void CopyFrom ( Movie source )
         {

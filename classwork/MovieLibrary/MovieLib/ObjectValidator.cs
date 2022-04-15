@@ -20,5 +20,12 @@ namespace MovieLib
             results = errors;
             return false;
         }
+
+        public static void ValidateObject ( IValidatableObject value )
+        {
+            var context = new ValidationContext(value);
+
+            Validator.ValidateObject(value, context, true);
+        }
     }
 }
