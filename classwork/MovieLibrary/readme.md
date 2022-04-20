@@ -213,6 +213,20 @@ int age = person?.Age ?? 0;
   - [System Exceptions](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/exceptions.adoc#system-exceptions)
 - [Raising Exceptions](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/throwing-exceptions.adoc)
   - [Throw Statement](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/throwing-exceptions.adoc#throw-statement)
-- [Handling Exceptions]()
-  - [Try-Catch Statement]()
-  - [Try-Finally Statement]()
+- [Handling Exceptions](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/handling-exceptions.adoc)
+  - [Try-Catch Statement](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/try-catch.adoc)
+  - [Try-Finally Statement](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/try-finally.adoc)
+- Resource Management
+  - [IDisposable Interface](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-9/interface-idisposable.adoc)
+  - [Using Statement](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-9/using-statement.adoc)
+
+# Unit 9
+
+- [ADO.NET](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-10/ado-net.adoc)
+  - [DbConnection](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-10/connections.adoc)
+  - [DbCommand](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-10/commands.adoc)
+    - [Executing Commands](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-10/commands.adoc#executing-commands)
+  - [Reading Data](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-10/reading-data.adoc)
+    - [Dataset](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-10/datasets.adoc)
+    - [Datareader](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-10/datareader.adoc)
+

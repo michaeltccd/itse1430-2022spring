@@ -26,7 +26,6 @@ namespace MovieLib.WinHost
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     //Seed database                    
-                    //SeedDatabase.Seed(_movies);
                     _movies.Seed();
                     UpdateUI();
                 };
@@ -60,7 +59,6 @@ namespace MovieLib.WinHost
         {
             var dlg = new MovieForm();
 
-            //Show modally - blocking call
             do
             {
                 if (dlg.ShowDialog(this) != DialogResult.OK)
