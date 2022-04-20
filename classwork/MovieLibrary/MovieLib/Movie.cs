@@ -138,6 +138,9 @@ namespace MovieLib
 
             if (String.IsNullOrEmpty(Rating))
                 yield return new ValidationResult("Rating is required", new[] { nameof(Rating) });
+
+            if (String.Equals(_title, "Error", StringComparison.OrdinalIgnoreCase))
+                yield return new ValidationResult("Title cannot be 'error'", new[] { nameof(Title) });            
         }
     }    
 }

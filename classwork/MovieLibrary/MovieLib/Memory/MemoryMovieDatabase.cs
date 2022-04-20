@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace MovieLib.Memory
@@ -8,7 +9,10 @@ namespace MovieLib.Memory
     public class MemoryMovieDatabase : MovieDatabase
     {                
         protected override Movie AddCore ( Movie movie )
-        {                        
+        {
+            if (String.Equals(movie.Title, "MemoryError", StringComparison.OrdinalIgnoreCase))
+                throw new IOException("Bad memory");
+
             movie.Id = _id++;
             _movies.Add(movie.Copy());
             return movie;

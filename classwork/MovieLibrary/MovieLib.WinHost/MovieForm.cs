@@ -66,7 +66,7 @@ namespace MovieLib.WinHost
 
             //Validate
             //if (new ObjectValidator().TryValidateObject(movie, out var errors))                
-            if (ObjectValidator.TryValidateObject(movie, out var errors))
+            //if (ObjectValidator.TryValidateObject(movie, out var errors))
             {
                 //Validate
                 Movie = movie;

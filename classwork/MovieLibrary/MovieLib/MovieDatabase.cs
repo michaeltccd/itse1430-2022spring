@@ -39,14 +39,28 @@ namespace MovieLib
             var existing = FindByName(movie.Title);
             if (existing != null)
                 //return "Movie must be unique";
-                //throw new InvalidOperationException("Movie must be unique");
-                throw new ArgumentException("Movie must be unique", nameof(movie));
+                throw new InvalidOperationException("Movie must be unique");
+            //throw new ArgumentException("Movie must be unique", nameof(movie));
 
             //Add
-            var newMovie = AddCore(movie);
+            try
+            {
+                var newMovie = AddCore(movie);
+                return newMovie;
+            } catch (InvalidOperationException e)
+            {
+                //Pass through
+                // NEVER DO THIS -> throw e;
+                throw;
+            } catch (Exception e)
+            {
+                //Wrap it in a generic exception
+                throw new Exception("Error adding movie", e);
+            };
+
             //movie.Id = newMovie.Id;
             //return "";
-            return newMovie;
+            
         }
 
         /// <summary>Adds a movie to the database.</summary>
