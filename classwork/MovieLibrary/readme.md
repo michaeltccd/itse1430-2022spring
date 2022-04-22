@@ -191,7 +191,7 @@ To work around the type change it is common to combine the null conditional oper
 ```
 int age = person?.Age ?? 0;
 ```
-
+- [Classes]()
 - [Advanced Types](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-7/readme.adoc)
   - [Interfaces](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-6/interfaces.adoc)
     - [Using Interfaces](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-6/interfaces.adoc#working-with-interfaces)
@@ -216,10 +216,15 @@ int age = person?.Age ?? 0;
 - [Handling Exceptions](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/handling-exceptions.adoc)
   - [Try-Catch Statement](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/try-catch.adoc)
   - [Try-Finally Statement](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-8/try-finally.adoc)
-- Resource Management
+
+# Unit 8
+
+- [Files](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-9/files.adoc)
+  - [Streamed IO](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-9/stream-io.adoc)
+- [Resource Management](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-9/resource-management.adoc)
   - [IDisposable Interface](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-9/interface-idisposable.adoc)
   - [Using Statement](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-9/using-statement.adoc)
-
+  
 # Unit 9
 
 - [ADO.NET](https://github.com/michaeltccd/ITSE1430-docs/blob/master/book/chapter-10/ado-net.adoc)

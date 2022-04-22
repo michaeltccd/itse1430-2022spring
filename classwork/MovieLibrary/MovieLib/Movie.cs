@@ -16,14 +16,7 @@ namespace MovieLib
         /// <summary>Gets or sets the title of the movie.</summary>
         public string Title
         {
-            //get { return !String.IsNullOrEmpty(_title) ? _title : ""; }
-            //get { return (_title != null) ? _title : ""; }
-            //get { return _title ?? ""; }
             get => _title ?? "";
-
-            //set { _title = (value != null ) ? value.Trim() : null; }
-            //set { _title = (value ?? "").Trim(); }
-            //set { _title = value?.Trim(); }
             set => _title = value?.Trim();
         }
         private string _title;
@@ -33,11 +26,6 @@ namespace MovieLib
 
         /// <summary>Gets or sets the release year.</summary>
         public int ReleaseYear { get; set; } = 1900;
-        //{
-        //    get { return _releaseYear; }
-        //    set { _releaseYear = value; }
-        //}
-        //private int _releaseYear = 1900;
 
         /// <summary>Gets or sets the rating.</summary>
         public string Rating
@@ -68,23 +56,12 @@ namespace MovieLib
 
         /// <summary>Determines if the movie is black and white.</summary>
         public bool IsBlackAndWhite => ReleaseYear <= 1939;
-        //public bool IsBlackAndWhite
-        //{
-        //    get => ReleaseYear <= 1939;
-        //    //get { return ReleaseYear <= 1939; }
-        //    //set { }   // No setter so it cannot be written to
-        //}
-        //Don't do this - it is a public field
-        //public bool IsBlackAndWhite2 = false;
-       
+        
         /// <summary>Gets the unique ID of the movie.</summary>
         public int Id { get; set; }
 
         //Expression body
         public override string ToString () => $"{Title} ({ReleaseYear})";        
-        //{
-        //    return $"{Title} ({ReleaseYear})";
-        //}
 
         public Movie Copy () => new Movie() {
                 Id = Id,
@@ -96,20 +73,7 @@ namespace MovieLib
                 Rating = Rating,
                 IsClassic = IsClassic
             };
-        
-        //{            
-        //    return new Movie() {
-        //                Id = Id,
-        //                Title = Title,
-        //                Description = Description,
-        //                Duration = Duration,
-        //                ReleaseYear = ReleaseYear,
-        //                Genre = Genre,
-        //                Rating = Rating,
-        //                IsClassic = IsClassic
-        //            };
-        //}
-
+               
         public void CopyFrom ( Movie source )
         {
             Title = source.Title;
