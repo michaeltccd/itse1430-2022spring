@@ -18,7 +18,7 @@ namespace MovieLib.WinHost
         protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
-
+                                    
             //If database is empty
             IEnumerable<Movie> items = _movies.GetAll();            
             if (!items.Any())
@@ -27,10 +27,11 @@ namespace MovieLib.WinHost
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     //Seed database                    
-                    _movies.Seed();
-                    UpdateUI();
+                    _movies.Seed();                    
                 };
             };
+
+            UpdateUI();
         }
 
         protected override void OnFormClosing ( FormClosingEventArgs e )
@@ -173,7 +174,7 @@ namespace MovieLib.WinHost
             _lstMovies.Items.AddRange(movies.ToArray());
         }
 
-        private readonly IMovieDatabase _movies = new MemoryMovieDatabase();
+        private readonly IMovieDatabase _movies = new IO.FileMovieDatabase("movies.txt");
 
         #endregion
     }
