@@ -174,7 +174,7 @@ namespace MovieLib.WinHost
             _lstMovies.Items.AddRange(movies.ToArray());
         }
 
-        private readonly IMovieDatabase _movies = new IO.FileMovieDatabase("movies.txt");
+        private readonly IMovieDatabase _movies = new Sql.SqlMovieDatabase(Program.GetConnectionString("AppDatabase"));
 
         #endregion
     }
