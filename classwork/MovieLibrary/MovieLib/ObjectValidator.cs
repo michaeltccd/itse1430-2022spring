@@ -6,7 +6,7 @@ namespace MovieLib
 {
     public static class ObjectValidator
     {
-        public static bool TryValidateObject ( IValidatableObject value, out IEnumerable<ValidationResult> results )
+        public static bool TryValidateObject ( object value, out IEnumerable<ValidationResult> results )
         {
             var context = new ValidationContext(value);
             var errors = new List<ValidationResult>();
@@ -21,7 +21,7 @@ namespace MovieLib
             return false;
         }
 
-        public static void ValidateObject ( IValidatableObject value )
+        public static void ValidateObject ( object value )
         {
             var context = new ValidationContext(value);
 
